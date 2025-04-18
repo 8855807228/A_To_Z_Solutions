@@ -1,9 +1,13 @@
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
+import Logo from '../assets/BB Holidays.png';
+import useScrollRestoration from '../hooks/useScrollRestoration';
 
 export function Layout() {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  useScrollRestoration();
 
   const isActiveLink = (path) => {
     return location.pathname === path ? 'text-blue-600' : 'text-gray-600';
@@ -23,8 +27,8 @@ export function Layout() {
           <div className="flex justify-between h-16 items-center">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <Link to="/holidays" className="text-2xl font-bold text-blue-600">
-                BB Holidays
+              <Link to="/holidays" className="flex items-center">
+                <img src={Logo} alt="BB Holidays" className="h-12 w-auto" />
               </Link>
             </div>
 
@@ -97,7 +101,9 @@ export function Layout() {
 
       {/* Main Content */}
       <main className="flex-grow">
-        <Outlet />
+        <AnimatePresence mode="wait">
+          <Outlet key={location.pathname} />
+        </AnimatePresence>
       </main>
 
       {/* Footer */}
