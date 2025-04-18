@@ -1,0 +1,14 @@
+{
+  "name": "bb-artha-combined",
+  "version": "1.0.0",
+  "description": "Combined deployment for BB Holidays and ArthaSaarthi Financial Services",
+  "scripts": {
+    "install-all": "cd \"ArthaSaarthi Financial Services\" && npm install && cd ../\"BB Holidays\" && npm install",
+    "build": "node build.js",
+    "deploy": "bash deploy.sh",
+    "setup-ec2": "bash setup-ec2.sh"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0"
+  }
+}
