@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -8,6 +9,7 @@ const Contact = () => {
     triggerOnce: true,
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,10 +17,21 @@ const Contact = () => {
     message: '',
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      console.log('Form submitted:', formData);
+      setFormData({ name: '', email: '', phone: '', message: '' });
+      toast.success("Message sent successfully! We'll get back to you soon.");
+    } catch (error) {
+      toast.error('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -59,23 +72,15 @@ const Contact = () => {
               </div>
 
               <div className="space-y-3">
-                <p className="flex items-center text-gray-600">
-                  <span className="mr-3">📱</span>
-                  <a href="tel:+918381069577" className="hover:text-blue-600">
-                    +91 8381069577
-                  </a>
-                </p>
-                <p className="flex items-center text-gray-600">
-                  <span className="mr-3">📧</span>
-                  <a
-                    href="mailto:bbhushan.more@gmail.com"
-                    className="hover:text-blue-600">
-                    bbhushan.more@gmail.com
-                  </a>
-                </p>
+                <div className="flex items-center space-x-3 text-gray-600">
+                  <span className="text-primary">📱</span>
+                  <span>+91 8381069577</span>
+                </div>
+                <div className="flex items-center space-x-3 text-gray-600">
+                  <span className="text-primary">📧</span>
+                  <span>bbhushan.more@gmail.com</span>
+                </div>
               </div>
-
-              <div></div>
             </div>
           </div>
 
@@ -84,12 +89,15 @@ const Contact = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-white rounded-xl shadow-lg p-8">
+            className="bg-white rounded-2xl shadow-lg p-8">
+            <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+              Send us a Message
+            </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-gray-700 font-medium mb-2">
+                  className="block text-sm font-medium text-gray-700 mb-1">
                   Name
                 </label>
                 <input
@@ -98,15 +106,16 @@ const Contact = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   required
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                  disabled={isSubmitting}
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-gray-700 font-medium mb-2">
+                  className="block text-sm font-medium text-gray-700 mb-1">
                   Email
                 </label>
                 <input
@@ -115,15 +124,16 @@ const Contact = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   required
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                  disabled={isSubmitting}
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-gray-700 font-medium mb-2">
+                  className="block text-sm font-medium text-gray-700 mb-1">
                   Phone
                 </label>
                 <input
@@ -132,15 +142,16 @@ const Contact = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   required
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                  disabled={isSubmitting}
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-gray-700 font-medium mb-2">
+                  className="block text-sm font-medium text-gray-700 mb-1">
                   Message
                 </label>
                 <textarea
@@ -148,15 +159,27 @@ const Contact = () => {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows="4"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  required></textarea>
+                  required
+                  rows={4}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                  disabled={isSubmitting}
+                />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                Send Message
+                disabled={isSubmitting}
+                className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition-colors relative">
+                {isSubmitting ? (
+                  <>
+                    <span className="opacity-0">Send Message</span>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    </div>
+                  </>
+                ) : (
+                  'Send Message'
+                )}
               </button>
             </form>
           </motion.div>

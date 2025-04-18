@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Layout from './components/layout/Layout';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import About from './pages/About';
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/finance" element={<Layout />}>
           <Route index element={<Home />} />
