@@ -2,9 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Common Colors */
+  --color-primary: #1a56db;
+  --color-primary-dark: #1e429f;
+  --color-primary-light: #60a5fa;
+
+  /* Finance Feature Colors */
+  --color-finance-primary: #1a56db;
+  --color-finance-primary-dark: #1e429f;
+  --color-finance-primary-light: #60a5fa;
+
+  /* Holidays Feature Colors */
+  --color-holidays-primary: #2563eb;
+  --color-holidays-primary-dark: #1d4ed8;
+  --color-holidays-primary-light: #3b82f6;
+}
+
 @layer base {
   html {
     @apply antialiased;
+    font-family:
+      Inter var,
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 
   body {
@@ -14,15 +36,15 @@
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+    @apply inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors duration-200;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+    @apply inline-flex justify-center items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-base font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors duration-200;
   }
 
   .input {
-    @apply block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm;
+    @apply block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm;
   }
 
   .card {
@@ -30,7 +52,15 @@
   }
 
   .section-title {
-    @apply text-2xl font-bold text-gray-900 sm:text-3xl mb-6;
+    @apply text-2xl font-bold text-gray-900 mb-6;
+  }
+
+  .page-title {
+    @apply text-4xl font-bold text-center text-gray-900 mb-6;
+  }
+
+  .shimmer {
+    @apply animate-pulse bg-gray-200;
   }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function About() {
+const About = () => {
   const teamMembers = [
     {
       name: 'John Doe',
@@ -188,4 +188,6 @@ export function About() {
       </div>
     </div>
   );
-}
+};
+
+export default About;

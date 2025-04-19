@@ -15,14 +15,81 @@ import {
   StarIcon,
 } from '@heroicons/react/24/outline';
 
-// This will be moved to an API service file
-const fetchTourDetails = async (tourId) => {
-  // TODO: Replace with actual API endpoint
-  const response = await axios.get(`/api/tours/${tourId}`);
-  return response.data;
+// Helper to safely stringify data
+const safeStringify = (data) => {
+  try {
+    return JSON.stringify(data);
+  } catch (error) {
+    console.error('Error stringifying data:', error);
+    return '';
+  }
 };
 
-export const TourDetails = () => {
+// Helper to safely parse dates
+const safeParseDateString = (dateString) => {
+  try {
+    return new Date(dateString).toLocaleDateString();
+  } catch (error) {
+    console.error('Error parsing date:', error);
+    return dateString || '';
+  }
+};
+
+// Safe number formatter
+const formatNumber = (value) => {
+  try {
+    return Number(value).toLocaleString('en-IN');
+  } catch (error) {
+    console.error('Error formatting number:', error);
+    return value?.toString() || '0';
+  }
+};
+
+// This will be moved to an API service file
+const fetchTourDetails = async (tourId) => {
+  try {
+    // TODO: Replace with actual API endpoint
+    const response = await axios.get(`/api/tours/${tourId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching tour details:', error);
+    // Return mock data on error
+    return {
+      id: 1,
+      title: 'Ajanta & Ellora Caves Explorer',
+      description: 'Discover the ancient Buddhist caves of Ajanta and Ellora.',
+      longDescription:
+        'A fascinating journey through time exploring the magnificent Ajanta and Ellora Caves.',
+      imageUrl: 'https://example.com/ajanta.jpg',
+      images: ['https://example.com/ajanta1.jpg'],
+      duration: 3,
+      location: 'Aurangabad, Maharashtra',
+      groupSize: 15,
+      price: 12999,
+      rating: 4.8,
+      category: 'Heritage',
+      inclusions: ['Hotel accommodation'],
+      itinerary: [
+        {
+          day: 1,
+          title: 'Arrival & Ajanta Caves',
+          description: 'Arrive in Aurangabad and visit Ajanta Caves.',
+        },
+      ],
+      reviews: [
+        {
+          id: 1,
+          user: 'Rahul M.',
+          rating: 5,
+          comment: 'Excellent tour!',
+          date: '2024-03-15',
+        },
+      ],
+    };
+  }
+};
+
+const TourDetails = () => {
   const { id } = useParams();
   const [openBooking, setOpenBooking] = useState(false);
   const [bookingDetails, setBookingDetails] = useState({
@@ -38,122 +105,75 @@ export const TourDetails = () => {
   } = useQuery({
     queryKey: ['tour', id],
     queryFn: () => fetchTourDetails(id),
-    // Temporary mock data until API is ready
-    initialData: {
-      id: 1,
-      title: 'Ajanta & Ellora Caves Explorer',
-      description:
-        'Discover the ancient Buddhist caves of Ajanta and Ellora, a UNESCO World Heritage site featuring remarkable rock-cut architecture.',
-      longDescription: `Embark on a fascinating journey through time as you explore the magnificent Ajanta and Ellora Caves, 
-        a testament to India's rich cultural heritage. This carefully curated tour offers:
-        
-        • Expert-guided tours of all major caves
-        • Detailed explanations of Buddhist, Hindu, and Jain art
-        • Photography sessions during optimal lighting conditions
-        • Local cuisine experiences
-        • Comfortable accommodation in Aurangabad
-        • Air-conditioned transport throughout the tour`,
-      imageUrl: 'https://example.com/ajanta.jpg',
-      images: [
-        'https://example.com/ajanta1.jpg',
-        'https://example.com/ajanta2.jpg',
-        'https://example.com/ajanta3.jpg',
-      ],
-      duration: 3,
-      location: 'Aurangabad, Maharashtra',
-      groupSize: 15,
-      price: 12999,
-      rating: 4.8,
-      category: 'Heritage',
-      inclusions: [
-        'Hotel accommodation',
-        'Breakfast and dinner',
-        'AC vehicle',
-        'Expert guide',
-        'Monument entrance fees',
-        'Photography permits',
-      ],
-      itinerary: [
-        {
-          day: 1,
-          title: 'Arrival & Ajanta Caves',
-          description:
-            'Arrive in Aurangabad, transfer to hotel, and visit Ajanta Caves in the afternoon.',
-        },
-        {
-          day: 2,
-          title: 'Ellora Caves Exploration',
-          description:
-            'Full day exploration of Ellora Caves with expert guide.',
-        },
-        {
-          day: 3,
-          title: 'Local Sightseeing & Departure',
-          description: 'Morning visit to Bibi Ka Maqbara and departure.',
-        },
-      ],
-      reviews: [
-        {
-          id: 1,
-          user: 'Rahul M.',
-          rating: 5,
-          comment:
-            'Excellent tour with knowledgeable guides. The caves were breathtaking!',
-          date: '2024-03-15',
-        },
-        {
-          id: 2,
-          user: 'Sarah K.',
-          rating: 4,
-          comment:
-            'Great experience, though it was quite hot. The hotel was comfortable.',
-          date: '2024-03-10',
-        },
-      ],
+    retry: 1,
+    refetchOnWindowFocus: false,
+    select: (data) => {
+      try {
+        // Ensure we're working with a clean copy of the data
+        return JSON.parse(safeStringify(data));
+      } catch (err) {
+        console.error('Error processing tour data:', err);
+        return null;
+      }
     },
   });
 
   const handleBookingChange = (field) => (event) => {
-    setBookingDetails((prev) => ({
-      ...prev,
-      [field]: event.target?.value ?? event,
-    }));
+    const value = event?.target?.value;
+    if (value !== undefined) {
+      setBookingDetails((prev) => ({
+        ...prev,
+        [field]: value,
+      }));
+    }
   };
 
   const handleBookNow = () => {
-    // TODO: Implement booking logic
-    console.log('Booking details:', bookingDetails);
-    setOpenBooking(false);
+    try {
+      console.log('Booking details:', safeStringify(bookingDetails));
+      setOpenBooking(false);
+    } catch (error) {
+      console.error('Error processing booking:', error);
+    }
   };
 
   const renderStars = (rating) => {
-    return [...Array(5)].map((_, index) => (
-      <StarIcon
-        key={index}
-        className={`h-5 w-5 ${
-          index < Math.floor(rating) ?
-            'text-yellow-400 fill-current'
-          : 'text-gray-300'
-        }`}
-      />
-    ));
+    try {
+      const ratingNum = Number(rating) || 0;
+      return [...Array(5)].map((_, index) => (
+        <StarIcon
+          key={index}
+          className={`h-5 w-5 ${
+            index < Math.floor(ratingNum) ?
+              'text-yellow-400 fill-current'
+            : 'text-gray-300'
+          }`}
+        />
+      ));
+    } catch (error) {
+      console.error('Error rendering stars:', error);
+      return null;
+    }
   };
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary-400 border-r-transparent"></div>
       </div>
     );
+  }
 
-  if (error)
+  if (error || !tour) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <p className="text-red-600">
-          Error loading tour details. Please try again later.
+          {error?.message ||
+            'Error loading tour details. Please try again later.'}
         </p>
       </div>
     );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -163,32 +183,32 @@ export const TourDetails = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-2">
               <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-primary-100 text-primary-800">
-                {tour.category}
+                {tour.category || 'Tour'}
               </span>
             </div>
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              {tour.title}
+              {tour.title || 'Tour Details'}
             </h1>
             <div className="flex items-center space-x-4 mb-6">
               <div className="flex items-center space-x-1">
                 {renderStars(tour.rating)}
                 <span className="ml-2 text-sm text-gray-600">
-                  ({tour.reviews?.length} reviews)
+                  ({tour.reviews?.length || 0} reviews)
                 </span>
               </div>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <div className="flex items-center space-x-2 text-gray-600">
                 <MapPinIcon className="h-5 w-5" />
-                <span>{tour.location}</span>
+                <span>{tour.location || 'Location not specified'}</span>
               </div>
               <div className="flex items-center space-x-2 text-gray-600">
                 <ClockIcon className="h-5 w-5" />
-                <span>{tour.duration} days</span>
+                <span>{tour.duration || 0} days</span>
               </div>
               <div className="flex items-center space-x-2 text-gray-600">
                 <UserGroupIcon className="h-5 w-5" />
-                <span>Max {tour.groupSize} people</span>
+                <span>Max {tour.groupSize || 0} people</span>
               </div>
             </div>
           </div>
@@ -198,13 +218,13 @@ export const TourDetails = () => {
             <div className="bg-white rounded-lg shadow-lg p-6">
               <div className="flex items-baseline mb-4">
                 <span className="text-3xl font-bold text-gray-900">
-                  ₹{tour.price.toLocaleString('en-IN')}
+                  ₹{formatNumber(tour.price)}
                 </span>
                 <span className="ml-2 text-gray-600">/person</span>
               </div>
               <button
                 onClick={() => setOpenBooking(true)}
-                className="btn w-full">
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-medium transition-colors duration-200">
                 Book Now
               </button>
             </div>
@@ -216,27 +236,32 @@ export const TourDetails = () => {
             {/* Description */}
             <section className="prose prose-lg max-w-none mb-12">
               <h2 className="section-title">About This Tour</h2>
-              <p className="whitespace-pre-line">{tour.longDescription}</p>
+              <p className="whitespace-pre-line">
+                {tour.longDescription ||
+                  tour.description ||
+                  'No description available.'}
+              </p>
             </section>
 
             {/* Inclusions */}
             <section className="mb-12">
               <h2 className="section-title">What's Included</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {tour.inclusions.map((inclusion, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
-                    {index % 4 === 0 ?
-                      <HomeIcon className="h-5 w-5 text-primary-600" />
-                    : index % 4 === 1 ?
-                      <BuildingStorefrontIcon className="h-5 w-5 text-primary-600" />
-                    : index % 4 === 2 ?
-                      <TruckIcon className="h-5 w-5 text-primary-600" />
-                    : <TicketIcon className="h-5 w-5 text-primary-600" />}
-                    <span className="text-gray-700">{inclusion}</span>
-                  </div>
-                ))}
+                {Array.isArray(tour.inclusions) &&
+                  tour.inclusions.map((inclusion, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
+                      {index % 4 === 0 ?
+                        <HomeIcon className="h-5 w-5 text-primary-600" />
+                      : index % 4 === 1 ?
+                        <BuildingStorefrontIcon className="h-5 w-5 text-primary-600" />
+                      : index % 4 === 2 ?
+                        <TruckIcon className="h-5 w-5 text-primary-600" />
+                      : <TicketIcon className="h-5 w-5 text-primary-600" />}
+                      <span className="text-gray-700">{inclusion}</span>
+                    </div>
+                  ))}
               </div>
             </section>
 
@@ -244,16 +269,17 @@ export const TourDetails = () => {
             <section className="mb-12">
               <h2 className="section-title">Itinerary</h2>
               <div className="space-y-4">
-                {tour.itinerary.map((day) => (
-                  <div
-                    key={day.day}
-                    className="bg-white rounded-lg shadow-sm p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      Day {day.day}: {day.title}
-                    </h3>
-                    <p className="text-gray-600">{day.description}</p>
-                  </div>
-                ))}
+                {Array.isArray(tour.itinerary) &&
+                  tour.itinerary.map((day) => (
+                    <div
+                      key={day.day}
+                      className="bg-white rounded-lg shadow-sm p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        Day {day.day}: {day.title}
+                      </h3>
+                      <p className="text-gray-600">{day.description}</p>
+                    </div>
+                  ))}
               </div>
             </section>
 
@@ -261,24 +287,27 @@ export const TourDetails = () => {
             <section>
               <h2 className="section-title">Reviews</h2>
               <div className="space-y-4">
-                {tour.reviews.map((review) => (
-                  <div
-                    key={review.id}
-                    className="bg-white rounded-lg shadow-sm p-6">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-medium text-gray-900">
-                        {review.user}
-                      </span>
-                      <span className="text-sm text-gray-500">
-                        {new Date(review.date).toLocaleDateString()}
-                      </span>
+                {Array.isArray(tour.reviews) &&
+                  tour.reviews.map((review) => (
+                    <div
+                      key={review.id}
+                      className="bg-white rounded-lg shadow-sm p-6">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="font-medium text-gray-900">
+                          {review.user || 'Anonymous'}
+                        </span>
+                        <span className="text-sm text-gray-500">
+                          {safeParseDateString(review.date)}
+                        </span>
+                      </div>
+                      <div className="flex items-center mb-2">
+                        {renderStars(review.rating)}
+                      </div>
+                      <p className="text-gray-600">
+                        {review.comment || 'No comment provided.'}
+                      </p>
                     </div>
-                    <div className="flex items-center mb-2">
-                      {renderStars(review.rating)}
-                    </div>
-                    <p className="text-gray-600">{review.comment}</p>
-                  </div>
-                ))}
+                  ))}
               </div>
             </section>
           </div>
@@ -311,7 +340,7 @@ export const TourDetails = () => {
                   value={bookingDetails.date}
                   onChange={handleBookingChange('date')}
                   min={new Date().toISOString().split('T')[0]}
-                  className="input"
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-500"
                 />
               </div>
               <div>
@@ -327,8 +356,8 @@ export const TourDetails = () => {
                   value={bookingDetails.guests}
                   onChange={handleBookingChange('guests')}
                   min="1"
-                  max={tour.groupSize}
-                  className="input"
+                  max={tour.groupSize || 1}
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-500"
                 />
               </div>
               <div>
@@ -342,7 +371,7 @@ export const TourDetails = () => {
                   name="roomType"
                   value={bookingDetails.roomType}
                   onChange={handleBookingChange('roomType')}
-                  className="input">
+                  className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-500">
                   <option value="standard">Standard Room</option>
                   <option value="deluxe">Deluxe Room</option>
                   <option value="suite">Suite</option>
@@ -352,10 +381,12 @@ export const TourDetails = () => {
             <div className="mt-6 flex justify-end space-x-3">
               <button
                 onClick={() => setOpenBooking(false)}
-                className="btn-secondary">
+                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
                 Cancel
               </button>
-              <button onClick={handleBookNow} className="btn">
+              <button
+                onClick={handleBookNow}
+                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                 Confirm Booking
               </button>
             </div>
@@ -365,3 +396,5 @@ export const TourDetails = () => {
     </div>
   );
 };
+
+export default TourDetails;

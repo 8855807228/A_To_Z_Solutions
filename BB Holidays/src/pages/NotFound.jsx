@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 
-export const NotFound = () => {
+const NotFound = () => {
   return (
     <PageTransition>
       <div className="min-h-[80vh] bg-white px-6 py-32 lg:px-8">
@@ -38,3 +38,5 @@ export const NotFound = () => {
     </PageTransition>
   );
 };
+
+export default NotFound;

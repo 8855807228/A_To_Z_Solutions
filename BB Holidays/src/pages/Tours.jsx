@@ -87,7 +87,7 @@ const fetchTours = async (filters) => {
   return filteredTours;
 };
 
-export function Tours() {
+const Tours = () => {
   const [filters, setFilters] = useState({
     search: '',
     category: 'all',
@@ -242,4 +242,6 @@ export function Tours() {
       </div>
     </PageTransition>
   );
-}
+};
+
+export default Tours;

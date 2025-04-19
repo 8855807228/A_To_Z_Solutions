@@ -5,12 +5,11 @@ import {
   MapPinIcon,
   ClockIcon,
 } from '@heroicons/react/24/outline';
-// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
 import toast from 'react-hot-toast';
 
-export function Contact() {
+const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -260,4 +259,6 @@ export function Contact() {
       </div>
     </PageTransition>
   );
-}
+};
+
+export default Contact;
