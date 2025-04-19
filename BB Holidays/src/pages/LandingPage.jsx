@@ -12,8 +12,8 @@ export const LandingPage = () => {
         </h1>
         <div className="grid md:grid-cols-2 gap-8">
           <div
-            onClick={() => navigate('/tours')}
-            className="card p-6 cursor-pointer">
+            onClick={() => navigate('/holidays')}
+            className="card p-6 cursor-pointer hover:shadow-lg transition-shadow">
             <h2 className="text-2xl font-semibold text-primary-600 mb-4">
               BB Holidays
             </h2>
@@ -22,8 +22,8 @@ export const LandingPage = () => {
             </p>
           </div>
           <div
-            onClick={() => (window.location.href = 'http://localhost:5173')}
-            className="card p-6 cursor-pointer">
+            onClick={() => navigate('/finance')}
+            className="card p-6 cursor-pointer hover:shadow-lg transition-shadow">
             <h2 className="text-2xl font-semibold text-primary-600 mb-4">
               ArthaSaarthi Financial Services
             </h2>
