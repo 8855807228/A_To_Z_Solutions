@@ -7,24 +7,24 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-16 px-4">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-8 sm:py-16 px-4">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-center text-gray-900 mb-12">
+        <h1 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-8 sm:mb-12">
           Welcome to Our Services
         </h1>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
           <div
             onClick={() => navigate('/holidays')}
-            className="card p-8 cursor-pointer hover:shadow-lg transition-shadow rounded-xl bg-white flex flex-col items-center">
+            className="card p-6 sm:p-8 cursor-pointer hover:shadow-xl transition-all duration-300 rounded-xl bg-white flex flex-col items-center transform hover:-translate-y-1">
             <img
               src={BBHolidaysLogo}
               alt="A to Z Solutions"
-              className="h-16 w-auto mb-6"
+              className="h-16 w-auto mb-4 sm:mb-6"
             />
-            <h2 className="text-2xl font-semibold text-primary-600 mb-4">
+            <h2 className="text-xl sm:text-2xl font-semibold text-primary-600 mb-3 sm:mb-4">
               A to Z Solutions
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-600 text-sm sm:text-base text-center">
               Discover amazing holiday packages and tours.
             </p>
           </div>
