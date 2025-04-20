@@ -12,10 +12,10 @@ import { useFinance } from '../context/FinanceContext';
 
 const upcomingWebinar = {
   title: 'SIPs & Smart Mutual Fund Investing',
-  date: '2024-04-15',
-  time: '10:00 AM - 12:00 PM',
+  date: '2024-04-20',
+  time: '5.30 Pm - 7.30 PM',
   duration: '2 Hours',
-  price: '₹499',
+  price: '₹',
   seats: 60,
   topics: [
     'Understanding SIP basics and benefits',
