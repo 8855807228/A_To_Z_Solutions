@@ -42,8 +42,7 @@ export default function Webinars() {
 
   const handleGoogleFormRedirect = () => {
     window.open(
-      'https://docs.google.com/forms/d/e/1FAIpQLScOKcdzBjLa_GcVOlix4Z1mKOW29SZn0pIUJTlgM__bFHEnAQ/viewform?pli=1',
-      '_blank',
+      'https://docs.google.com/forms/d/e/1FAIpQLScOKcdzBjLa_GcVOlix4Z1mKOW29SZn0pIUJTlgM__bFHEnAQ/viewform',
     );
   };
 
@@ -172,7 +171,7 @@ export default function Webinars() {
               <div className="rounded-2xl bg-gray-50 p-8">
                 <h3 className="text-lg font-semibold leading-8 tracking-tight text-gray-900">
                   Register Now for {upcomingWebinar.price}
-                  <a href="https://meet.google.com/wic-fpbi-hts"></a>
+                  <a href="https://docs.google.com/forms/d/e/1FAIpQLScOKcdzBjLa_GcVOlix4Z1mKOW29SZn0pIUJTlgM__bFHEnAQ/viewform"></a>
                 </h3>
                 <p className="mt-4 leading-7 text-gray-600">
                   Secure your spot in this exclusive webinar. Limited seats
