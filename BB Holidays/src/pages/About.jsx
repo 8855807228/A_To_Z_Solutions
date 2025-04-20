@@ -7,7 +7,7 @@ const About = () => {
       role: 'Founder & CEO',
       image:
         'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=250&auto=format&fit=crop',
-      bio: 'With over 15 years of experience in the travel industry, John founded BB Holidays with a vision to create unforgettable travel experiences.',
+      bio: 'With over 15 years of experience in the travel industry, John founded A to Z Solutions with a vision to create unforgettable travel experiences.',
     },
     {
       name: 'Jane Smith',
@@ -38,7 +38,7 @@ const About = () => {
         </div>
         <div className="relative container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            About BB Holidays
+            About A to Z Solutions
           </h1>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto">
             Creating memorable travel experiences across India since 2010
@@ -51,8 +51,8 @@ const About = () => {
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
           <p className="text-lg text-gray-600 mb-8">
-            BB Holidays was founded with a simple yet powerful mission: to help
-            travelers discover the true essence of India through carefully
+            A to Z Solutions was founded with a simple yet powerful mission: to
+            help travelers discover the true essence of India through carefully
             curated and immersive travel experiences. What started as a small
             team of passionate travelers has grown into one of India's most
             trusted travel companies.

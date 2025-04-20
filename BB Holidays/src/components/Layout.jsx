@@ -28,7 +28,11 @@ export function Layout() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link to="/holidays" className="flex items-center">
-                <img src={Logo} alt="BB Holidays" className="h-12 w-auto" />
+                <img
+                  src={Logo}
+                  alt="A to Z Solutions"
+                  className="h-12 w-auto"
+                />
               </Link>
             </div>
 
@@ -110,7 +114,7 @@ export function Layout() {
       <footer className="bg-gray-800 text-white py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p>BB Holidays - Your Trusted Travel Partner</p>
+            <p>A to Z Solutions - Your Trusted Travel Partner</p>
             <p className="mt-2 text-gray-400">
               Contact: +91 8381069577 | Email: bbhushan@a2z-solutions.in
             </p>

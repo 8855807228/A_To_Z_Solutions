@@ -71,6 +71,13 @@ export default function Contact() {
     },
   });
 
+  const handleGoogleFormRedirect = () => {
+    window.open(
+      'https://docs.google.com/forms/d/e/1FAIpQLScOKcdzBjLa_GcVOlix4Z1mKOW29SZn0pIUJTlgM__bFHEnAQ/viewform?pli=1',
+      '_blank',
+    );
+  };
+
   return (
     <PageTransition>
       <div className="bg-white py-24 sm:py-32">
@@ -89,8 +96,8 @@ export default function Contact() {
               <p className="mt-6 text-lg leading-8 text-gray-600">
                 Have questions about our services? Want to start your financial
                 planning journey? We're here to help. Reach out to us through
-                any of the following channels or fill out the contact form
-                below.
+                any of the following channels, fill out the contact form below,
+                or use our Google Form.
               </p>
             </motion.div>
           </div>
@@ -212,6 +219,16 @@ export default function Contact() {
                   </button>
                 </div>
               </form>
+              <div className="mt-8 text-center">
+                <p className="text-sm text-gray-600 mb-4">
+                  Alternatively, you can reach us through our Google Form:
+                </p>
+                <button
+                  onClick={handleGoogleFormRedirect}
+                  className="inline-flex items-center px-4 py-2 border border-primary text-sm font-medium rounded-md text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors">
+                  Open Google Form
+                </button>
+              </div>
             </motion.div>
 
             <motion.div

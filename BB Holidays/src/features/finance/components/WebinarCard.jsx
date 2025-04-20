@@ -55,6 +55,7 @@ export default function WebinarCard({
           {isRegistering === webinar.id ?
             <>
               <span className="opacity-0">Register Now</span>
+              <a href="https://forms.gle/jyhgiST9zx1ahzW49"></a>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
               </div>

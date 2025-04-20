@@ -15,7 +15,7 @@ const LandingPage = () => {
             onClick={() => navigate('/holidays')}
             className="card p-6 cursor-pointer hover:shadow-lg transition-shadow">
             <h2 className="text-2xl font-semibold text-primary-600 mb-4">
-              BB Holidays
+              A to Z Solutions
             </h2>
             <p className="text-gray-600">
               Discover amazing holiday packages and tours.

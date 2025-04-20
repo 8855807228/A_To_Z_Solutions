@@ -6,8 +6,6 @@ import {
   UserGroupIcon,
   VideoCameraIcon,
 } from '@heroicons/react/24/outline';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 import PageTransition from '../../../components/PageTransition';
 import { useFinance } from '../context/FinanceContext';
@@ -38,51 +36,16 @@ const upcomingWebinar = {
   ],
 };
 
-const validationSchema = Yup.object({
-  name: Yup.string().required('Name is required'),
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('Email is required'),
-  phone: Yup.string()
-    .matches(/^[0-9]{10}$/, 'Phone number must be 10 digits')
-    .required('Phone number is required'),
-});
-
 export default function Webinars() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { webinarRegistrations, setWebinarRegistrations } = useFinance();
 
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      email: '',
-      phone: '',
-    },
-    validationSchema,
-    onSubmit: async (values) => {
-      setIsSubmitting(true);
-      try {
-        // Add registration to context
-        setWebinarRegistrations([
-          ...webinarRegistrations,
-          {
-            ...values,
-            webinarId: upcomingWebinar.title,
-            registrationDate: new Date().toISOString(),
-          },
-        ]);
-
-        // Here you would typically make an API call to register the user
-        console.log('Form submitted:', values);
-        toast.success('Registration successful! Check your email for details.');
-        formik.resetForm();
-      } catch (error) {
-        toast.error('Registration failed. Please try again.');
-      } finally {
-        setIsSubmitting(false);
-      }
-    },
-  });
+  const handleGoogleFormRedirect = () => {
+    window.open(
+      'https://docs.google.com/forms/d/e/1FAIpQLScOKcdzBjLa_GcVOlix4Z1mKOW29SZn0pIUJTlgM__bFHEnAQ/viewform?pli=1',
+      '_blank',
+    );
+  };
 
   return (
     <PageTransition>
@@ -209,84 +172,19 @@ export default function Webinars() {
               <div className="rounded-2xl bg-gray-50 p-8">
                 <h3 className="text-lg font-semibold leading-8 tracking-tight text-gray-900">
                   Register Now for {upcomingWebinar.price}
+                  <a href="https://meet.google.com/wic-fpbi-hts"></a>
                 </h3>
                 <p className="mt-4 leading-7 text-gray-600">
                   Secure your spot in this exclusive webinar. Limited seats
                   available!
                 </p>
-                <form onSubmit={formik.handleSubmit} className="mt-6 space-y-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium leading-6 text-gray-900">
-                      Full Name
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        type="text"
-                        id="name"
-                        {...formik.getFieldProps('name')}
-                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                      />
-                      {formik.touched.name && formik.errors.name && (
-                        <p className="mt-2 text-sm text-red-600">
-                          {formik.errors.name}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium leading-6 text-gray-900">
-                      Email
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        type="email"
-                        id="email"
-                        {...formik.getFieldProps('email')}
-                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                      />
-                      {formik.touched.email && formik.errors.email && (
-                        <p className="mt-2 text-sm text-red-600">
-                          {formik.errors.email}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium leading-6 text-gray-900">
-                      Phone Number
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        type="tel"
-                        id="phone"
-                        {...formik.getFieldProps('phone')}
-                        className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
-                      />
-                      {formik.touched.phone && formik.errors.phone && (
-                        <p className="mt-2 text-sm text-red-600">
-                          {formik.errors.phone}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div>
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full rounded-md bg-primary px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-                      {isSubmitting ? 'Registering...' : 'Register Now'}
-                    </button>
-                  </div>
-                </form>
+                <div className="mt-6">
+                  <button
+                    onClick={handleGoogleFormRedirect}
+                    className="w-full rounded-md bg-primary px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors">
+                    Register Now on Google Forms
+                  </button>
+                </div>
               </div>
             </motion.div>
           </div>

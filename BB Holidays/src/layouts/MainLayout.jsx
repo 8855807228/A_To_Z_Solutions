@@ -1,5 +1,17 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Container, Typography, Box, Button, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import {
+  AppBar,
+  Toolbar,
+  Container,
+  Typography,
+  Box,
+  Button,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 
@@ -28,13 +40,16 @@ export const MainLayout = ({ children }) => {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
+            sx={{ mr: 2, display: { sm: 'none' } }}>
             <MenuIcon />
           </IconButton>
-          
-          <Typography variant="h6" component={Link} to="/" sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}>
-            BB Holidays
+
+          <Typography
+            variant="h6"
+            component={Link}
+            to="/"
+            sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}>
+            A to Z Solutions
           </Typography>
 
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 2 }}>
@@ -43,8 +58,7 @@ export const MainLayout = ({ children }) => {
                 key={link.path}
                 component={Link}
                 to={link.path}
-                color="inherit"
-              >
+                color="inherit">
                 {link.title}
               </Button>
             ))}
@@ -58,16 +72,14 @@ export const MainLayout = ({ children }) => {
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{ keepMounted: true }}
-        sx={{ display: { xs: 'block', sm: 'none' } }}
-      >
+        sx={{ display: { xs: 'block', sm: 'none' } }}>
         <List>
           {navigationLinks.map((link) => (
-            <ListItem 
-              key={link.path} 
-              component={Link} 
+            <ListItem
+              key={link.path}
+              component={Link}
               to={link.path}
-              onClick={handleDrawerToggle}
-            >
+              onClick={handleDrawerToggle}>
               <ListItemText primary={link.title} />
             </ListItem>
           ))}
@@ -78,10 +90,18 @@ export const MainLayout = ({ children }) => {
         {children}
       </Box>
 
-      <Box component="footer" sx={{ py: 3, px: 2, mt: 'auto', backgroundColor: 'primary.main', color: 'white' }}>
+      <Box
+        component="footer"
+        sx={{
+          py: 3,
+          px: 2,
+          mt: 'auto',
+          backgroundColor: 'primary.main',
+          color: 'white',
+        }}>
         <Container maxWidth="lg">
           <Typography variant="body1" align="center">
-            BB Holidays - Your Trusted Travel Partner Since 2017
+            A to Z Solutions - Your Trusted Travel Partner Since 2017
           </Typography>
           <Typography variant="body2" align="center">
             Contact: +91 83810 69577 | Email: bbhushan@a2z-solutions.in
@@ -90,4 +110,4 @@ export const MainLayout = ({ children }) => {
       </Box>
     </Box>
   );
-}; 
+};
