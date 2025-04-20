@@ -139,6 +139,14 @@ const FinanceExpertise = lazyWithErrorBoundary(() =>
   }),
 );
 
+const WebinarAdmin = lazyWithErrorBoundary(() =>
+  import('./features/finance/pages/WebinarAdmin').then((module) => {
+    if (!module.default)
+      throw new Error('Failed to load WebinarAdmin component');
+    return module;
+  }),
+);
+
 // Create QueryClient with better error handling
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -323,6 +331,16 @@ function App() {
                     <Suspense fallback={<LoadingSpinner />}>
                       <ErrorBoundary>
                         <FinanceExpertise />
+                      </ErrorBoundary>
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="webinars/admin"
+                  element={
+                    <Suspense fallback={<LoadingSpinner />}>
+                      <ErrorBoundary>
+                        <WebinarAdmin />
                       </ErrorBoundary>
                     </Suspense>
                   }

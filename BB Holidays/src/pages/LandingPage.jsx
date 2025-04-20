@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import BBHolidaysLogo from '../assets/BB Holidays.png';
+import ArthaSaarthiLogo from '../features/finance/assets/ArthaSaarthi.png';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -13,7 +15,12 @@ const LandingPage = () => {
         <div className="grid md:grid-cols-2 gap-8">
           <div
             onClick={() => navigate('/holidays')}
-            className="card p-6 cursor-pointer hover:shadow-lg transition-shadow">
+            className="card p-8 cursor-pointer hover:shadow-lg transition-shadow rounded-xl bg-white flex flex-col items-center">
+            <img
+              src={BBHolidaysLogo}
+              alt="A to Z Solutions"
+              className="h-16 w-auto mb-6"
+            />
             <h2 className="text-2xl font-semibold text-primary-600 mb-4">
               A to Z Solutions
             </h2>
@@ -23,7 +30,12 @@ const LandingPage = () => {
           </div>
           <div
             onClick={() => navigate('/finance')}
-            className="card p-6 cursor-pointer hover:shadow-lg transition-shadow">
+            className="card p-8 cursor-pointer hover:shadow-lg transition-shadow rounded-xl bg-white flex flex-col items-center">
+            <img
+              src={ArthaSaarthiLogo}
+              alt="ArthaSaarthi Financial Services"
+              className="h-16 w-auto mb-6"
+            />
             <h2 className="text-2xl font-semibold text-primary-600 mb-4">
               ArthaSaarthi Financial Services
             </h2>
