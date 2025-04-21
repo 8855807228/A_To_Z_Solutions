@@ -84,7 +84,7 @@ export default function About() {
                   </p>
                   <div className="mt-8 flex items-center gap-x-6">
                     <a
-                      href="tel:+918381069577"
+                      href="/finance/webinars"
                       className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
                       Contact Now
                     </a>

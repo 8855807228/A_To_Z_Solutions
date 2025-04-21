@@ -9,6 +9,7 @@ import {
   ClockIcon,
 } from '@heroicons/react/24/outline';
 import PageTransition from '../../../components/PageTransition';
+import { Link } from 'react-router-dom';
 
 const validationSchema = Yup.object({
   name: Yup.string().required('Name is required'),
@@ -267,7 +268,7 @@ export default function Contact() {
                   </dl>
                 </div>
 
-                <div className="rounded-2xl bg-primary/5 p-10">
+                <div className="rounded-2xl bg-primary/5 p-8">
                   <h3 className="text-lg font-semibold leading-8 tracking-tight text-gray-900">
                     Why Contact Us?
                   </h3>
@@ -275,7 +276,13 @@ export default function Contact() {
                     role="list"
                     className="mt-6 space-y-4 text-sm leading-6 text-gray-600">
                     <li>Get expert financial guidance</li>
-                    <li>Schedule a free consultation</li>
+                    <li>
+                      <Link
+                        to="/finance/webinars"
+                        className="text-primary hover:text-primary-dark">
+                        Join our next webinar
+                      </Link>
+                    </li>
                     <li>Learn about our services</li>
                     <li>Start your financial planning journey</li>
                   </ul>

@@ -26,7 +26,7 @@ export default function ServiceCard({ service, index }) {
         <p className="flex-auto">{service.description}</p>
         <div className="mt-6">
           <Link
-            to="/finance/book-consultation"
+            to="/finance/webinars"
             className="text-sm font-semibold text-primary hover:text-primary-dark">
             Learn more <span aria-hidden="true">→</span>
           </Link>

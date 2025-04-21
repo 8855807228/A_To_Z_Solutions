@@ -46,7 +46,7 @@ export default function Navbar() {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link
-            to="/finance/book-consultation"
+            to="/finance/webinars"
             className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark transition-colors">
             Book Consultation
           </Link>
@@ -85,7 +85,7 @@ export default function Navbar() {
               </div>
               <div className="py-6">
                 <Link
-                  to="/finance/book-consultation"
+                  to="/finance/webinars"
                   className="block rounded-md bg-primary px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-primary-dark transition-colors"
                   onClick={() => setMobileMenuOpen(false)}>
                   Book Consultation

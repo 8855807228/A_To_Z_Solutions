@@ -1,5 +1,10 @@
 import React, { useEffect, Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import { Layout as BBHolidaysLayout } from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -112,14 +117,6 @@ const FinanceContact = lazyWithErrorBoundary(() =>
   import('./features/finance/pages/Contact').then((module) => {
     if (!module.default)
       throw new Error('Failed to load FinanceContact component');
-    return module;
-  }),
-);
-
-const BookConsultation = lazyWithErrorBoundary(() =>
-  import('./features/finance/pages/BookConsultation').then((module) => {
-    if (!module.default)
-      throw new Error('Failed to load BookConsultation component');
     return module;
   }),
 );
@@ -307,13 +304,7 @@ function App() {
                 />
                 <Route
                   path="book-consultation"
-                  element={
-                    <Suspense fallback={<LoadingSpinner />}>
-                      <ErrorBoundary>
-                        <BookConsultation />
-                      </ErrorBoundary>
-                    </Suspense>
-                  }
+                  element={<Navigate to="/finance/webinars" replace />}
                 />
                 <Route
                   path="webinars"
