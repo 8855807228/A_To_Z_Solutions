@@ -13,100 +13,50 @@ import PageTransition from '../../../components/PageTransition';
 
 const services = [
   {
-    name: 'Cashflow Management & Budgeting',
+    name: 'Tailored Financial Strategies',
     description:
-      'Master your money before it masters you. We help you track and optimize income & expenses, build smart savings habits, and maintain financial discipline.',
+      'We don’t believe in templates. Every plan we build is customized to your unique lifestyle, priorities, and goals.',
     icon: BanknotesIcon,
-    features: [
-      'Track and optimize your income & expenses',
-      'Build smart savings habits',
-      'Maintain financial discipline',
-      'Align monthly flows with future goals',
-    ],
   },
   {
-    name: 'Risk Management & Insurance Planning',
+    name: 'Goal-Based Planning',
     description:
-      'Protect first, then grow. Get the right coverage for life & health insurance without over-insurance and premium overload.',
+      'Align every financial decision with life goals like education, retirement, travel, or home buying.',
     icon: ShieldCheckIcon,
-    features: [
-      'Right-size your life & health insurance',
-      'Avoid over-insurance and premium overload',
-      "Secure your family's future",
-      'Comprehensive risk assessment',
-    ],
   },
   {
-    name: 'Debt Management & Counselling',
+    name: '360° Financial Review',
     description:
-      'Eliminate debt, embrace freedom. We help you create structured repayment plans and manage EMIs effectively.',
+      'Get an integrated approach covering income, expenses, assets, liabilities, insurance, and taxes.',
     icon: CreditCardIcon,
-    features: [
-      'Create a structured repayment plan',
-      'Manage EMIs and avoid penalties',
-      'Debt consolidation strategies',
-      'Credit score improvement',
-    ],
   },
   {
-    name: 'Investment Planning & Asset Allocation',
+    name: 'Portfolio Management',
     description:
-      'Invest wisely, live abundantly. Get expert guidance on diversifying your portfolio across various asset classes.',
+      'Smart investments curated for your risk appetite and wealth-building goals.',
     icon: ChartBarIcon,
-    features: [
-      'Diversify across equity, debt, gold, etc.',
-      'SIPs, mutual funds, bonds strategies',
-      'Periodic portfolio rebalancing',
-      'Risk-adjusted returns optimization',
-    ],
   },
   {
-    name: 'Retirement Planning',
+    name: 'Risk Reduction',
     description:
-      'Live your golden years with dignity. We help you calculate and achieve your ideal retirement corpus.',
+      'Shield your finances from uncertainties with sound protection planning.',
     icon: UserGroupIcon,
-    features: [
-      'Calculate ideal retirement corpus',
-      'NPS, pension funds, annuities planning',
-      'Inflation-adjusted planning',
-      'Healthcare cost consideration',
-    ],
   },
   {
-    name: 'Tax Planning',
-    description:
-      'Keep more of what you earn. Optimize your tax outgo through legal and compliant strategies.',
+    name: 'Decision-Making Support',
+    description: 'Understand your choices clearly with expert hand-holding.',
     icon: CalculatorIcon,
-    features: [
-      'Maximize tax deductions (80C, 80D, etc.)',
-      'Tax-efficient investment planning',
-      'Tax-saving investment options',
-      'Regular tax assessment',
-    ],
   },
   {
-    name: 'Estate Planning',
-    description:
-      'Pass on your wealth with peace. Professional guidance on wills, trusts, and succession planning.',
+    name: 'Transparent & Ethical Advice',
+    description: 'No commissions. Just your success.',
     icon: BuildingLibraryIcon,
-    features: [
-      'Will drafting and registration',
-      'Trust formation guidance',
-      'Asset distribution strategy',
-      'Legal compliance assurance',
-    ],
   },
   {
-    name: 'Succession Planning',
+    name: 'Empowerment for Financial Freedom',
     description:
-      'Build wealth that lasts generations. Ensure smooth transition of business and assets to the next generation.',
+      'Empower you to make smarter money decisions, grow your wealth, and enjoy lifelong financial well-being.',
     icon: ArrowPathIcon,
-    features: [
-      'Business succession strategy',
-      'Asset transition planning',
-      'Leadership succession',
-      'Family wealth preservation',
-    ],
   },
 ];
 
@@ -116,15 +66,13 @@ export default function Services() {
       <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-base font-semibold leading-7 text-primary">
-              Our Services
-            </h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Comprehensive Financial Solutions
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              We offer a full suite of financial planning services to guide you
-              at every stage of your financial journey.
+              Your financial journey deserves more than one-size-fits-all
+              advice. That’s why we provide holistic, personalized financial
+              guidance designed to empower you with clarity and control.
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
@@ -137,23 +85,15 @@ export default function Services() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}>
-                  <dt className="flex items-center gap-x-3 text-lg font-semibold leading-7 text-gray-900">
+                  <dt className="flex items-center gap-x-3 text-[20px] font-semibold leading-7 text-gray-900">
                     <service.icon
-                      className="h-6 w-6 flex-none text-primary"
+                      className="h-[88px] w-[88px] flex-none text-primary"
                       aria-hidden="true"
                     />
                     {service.name}
                   </dt>
                   <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
                     <p className="flex-auto">{service.description}</p>
-                    <ul className="mt-4 space-y-2 text-sm">
-                      {service.features.map((feature) => (
-                        <li key={feature} className="flex items-center">
-                          <span className="mr-2 h-1.5 w-1.5 flex-none rounded-full bg-primary" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
                   </dd>
                 </motion.div>
               ))}

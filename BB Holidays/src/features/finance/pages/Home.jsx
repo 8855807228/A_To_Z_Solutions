@@ -81,7 +81,7 @@ export default function Home() {
                 <Link
                   to="/finance/webinars"
                   className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-                  Book Free Consultation
+                  Book Consultation
                 </Link>
                 <Link
                   to="/finance/services"
@@ -100,7 +100,7 @@ export default function Home() {
               Why Choose Us
             </h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Everything you need for financial success
+              Achieve Your Financial Goals with Expert Guidance
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-600">
               Whether you're looking to grow your wealth, secure your family's
@@ -108,7 +108,7 @@ export default function Home() {
               the way.
             </p>
           </div>
-          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none pb-16">
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
               {features.map((feature) => (
                 <motion.div
@@ -118,10 +118,10 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}>
-                  <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
+                  <dt className="flex items-center gap-x-3 text-[36px] font-semibold leading-7 text-gray-900">
                     <img
                       src={feature.icon}
-                      className="h-12 w-12 flex-none"
+                      className="h-[110px] w-[110px] flex-none"
                       aria-hidden="true"
                       alt={feature.name}
                     />

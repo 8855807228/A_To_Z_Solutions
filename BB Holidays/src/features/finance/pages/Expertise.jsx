@@ -47,6 +47,50 @@ const expertiseAreas = [
     result: 'More savings, less stress.',
     icon: '🧾',
   },
+  {
+    title: 'Debt Management & Counselling',
+    tagline: 'Eliminate debt, embrace freedom.',
+    points: [
+      'Create a structured repayment plan',
+      'Manage EMIs and avoid penalties',
+      'Regain financial flexibility',
+    ],
+    result: 'Become debt-free and financially confident.',
+    icon: '💳',
+  },
+  {
+    title: 'Retirement Planning',
+    tagline: 'Live your golden years with dignity.',
+    points: [
+      'Calculate your ideal retirement corpus',
+      'Use NPS, pension funds, annuities, and more',
+      ' Inflation-adjusted planning for future expenses',
+    ],
+    result: 'Retire early or stress-free—your choice.',
+    icon: '👴',
+  },
+  {
+    title: 'Estate Planning',
+    tagline: 'Pass on your wealth with peace.',
+    points: [
+      'Draft and register your will',
+      'Minimize family disputes with clear instructions',
+      'Plan inheritance and trusts professionally',
+    ],
+    result: 'Retire early or stress-free—your choice.',
+    icon: '🏛',
+  },
+  {
+    title: 'Succession Planning',
+    tagline: 'Build wealth that lasts generations.',
+    points: [
+      'Ensure smooth business and asset transition',
+      'Plan legal, financial, and leadership succession',
+      'Protect your family and business legacy',
+    ],
+    result: 'Continuity, stability, and legacy preservation.',
+    icon: '🏢',
+  },
 ];
 
 function ExpertiseCard({ area, index }) {
