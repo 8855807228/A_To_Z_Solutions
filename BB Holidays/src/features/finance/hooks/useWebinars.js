@@ -40,18 +40,28 @@ const demoWebinars = [
   },
 ];
 
+// Initialize storage with demo data if empty
+const initializeStorage = () => {
+  const stored = localStorage.getItem('webinarData');
+  if (!stored) {
+    localStorage.setItem('webinarData', JSON.stringify(demoWebinars));
+  }
+  return stored ? JSON.parse(stored) : demoWebinars;
+};
+
 export function useWebinars() {
   const [webinars, setWebinars] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [registering, setRegistering] = useState(null);
+  const [webinarData, setWebinarData] = useState(null);
 
   useEffect(() => {
     const fetchWebinars = async () => {
       try {
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        setWebinars(demoWebinars);
+        // Get data from localStorage
+        const storedWebinars = initializeStorage();
+        setWebinars(storedWebinars);
       } catch (err) {
         setError('Failed to fetch webinars. Please try again later.');
         toast.error('Failed to fetch webinars');
@@ -60,7 +70,20 @@ export function useWebinars() {
       }
     };
 
+    const fetchWebinarData = async () => {
+      try {
+        const storedData = localStorage.getItem('savedWebinarData');
+        setWebinarData(storedData ? JSON.parse(storedData) : null);
+      } catch (err) {
+        setError('Failed to fetch webinar data');
+        toast.error('Failed to fetch webinar data');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     fetchWebinars();
+    fetchWebinarData();
   }, []);
 
   const registerForWebinar = async (webinarId) => {
@@ -69,13 +92,15 @@ export function useWebinars() {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      setWebinars((prev) =>
-        prev.map((webinar) =>
-          webinar.id === webinarId ?
-            { ...webinar, registeredCount: webinar.registeredCount + 1 }
-          : webinar,
-        ),
+      const updatedWebinars = webinars.map((webinar) =>
+        webinar.id === webinarId ?
+          { ...webinar, registeredCount: webinar.registeredCount + 1 }
+        : webinar,
       );
+
+      // Update localStorage
+      localStorage.setItem('webinarData', JSON.stringify(updatedWebinars));
+      setWebinars(updatedWebinars);
 
       toast.success('Registration successful! Check your email for details.');
     } catch (error) {
@@ -85,11 +110,26 @@ export function useWebinars() {
     }
   };
 
+  const updateWebinarData = async (newData) => {
+    try {
+      // Store in localStorage
+      localStorage.setItem('savedWebinarData', JSON.stringify(newData));
+      setWebinarData(newData);
+      return true;
+    } catch (err) {
+      setError('Failed to update webinar data');
+      toast.error('Failed to update webinar data');
+      return false;
+    }
+  };
+
   return {
     webinars,
     isLoading,
     error,
     registering,
     registerForWebinar,
+    webinarData,
+    updateWebinarData,
   };
 }

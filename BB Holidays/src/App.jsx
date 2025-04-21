@@ -14,6 +14,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FinanceProvider } from './features/finance/context/FinanceContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { WebinarProvider } from './features/finance/context/WebinarContext';
 
 // Improve lazy loading with better error handling
 const lazyWithErrorBoundary = (importFn) => {
@@ -256,9 +257,11 @@ function App() {
                 element={
                   <Suspense fallback={<LoadingSpinner />}>
                     <ErrorBoundary>
-                      <FinanceProvider>
-                        <FinanceLayout />
-                      </FinanceProvider>
+                      <WebinarProvider>
+                        <FinanceProvider>
+                          <FinanceLayout />
+                        </FinanceProvider>
+                      </WebinarProvider>
                     </ErrorBoundary>
                   </Suspense>
                 }>
