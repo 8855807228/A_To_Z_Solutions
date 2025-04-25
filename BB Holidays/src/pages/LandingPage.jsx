@@ -29,13 +29,15 @@ const LandingPage = () => {
             </p>
           </div>
           <div
-            onClick={() => navigate('/finance')}
+            // onClick={() => navigate('/finance')}
+            onClick={() => window.open('https://arthasaarthi.co.in/', '_blank')}
             className="p-6 sm:p-8 cursor-pointer hover:shadow-xl transition-all duration-300 rounded-xl bg-white flex flex-col items-center transform hover:-translate-y-1">
             <img
               src={ArthaSaarthiLogo}
               alt="ArthaSaarthi Financial Services"
               className="h-45 w-auto mb-6 object-contain"
             />
+
             <h2 className="text-xl sm:text-2xl font-semibold text-primary-600 mb-4 text-center">
               ArthaSaarthi Financial Services
             </h2>
