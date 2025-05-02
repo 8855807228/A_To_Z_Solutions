@@ -24,6 +24,17 @@ export default {
           900: '#0c4a6e',
           950: '#082f49',
         },
+        // Holiday color theme
+        holiday: {
+          DEFAULT: '#ff6b35', // Burnt orange - primary color
+          dark: '#e85d2c',
+          light: '#ff8b60',
+          teal: '#2ec4b6', // Secondary color - teal
+          tealDark: '#00a896',
+          yellow: '#ffce00', // Accent color - bright yellow
+          yellowLight: '#ffe16b',
+          sand: '#f8f1e0', // Background color
+        },
       },
       fontFamily: {
         sans: ['Inter var', 'sans-serif'],

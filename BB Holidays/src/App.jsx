@@ -45,6 +45,13 @@ const LandingPage = lazyWithErrorBoundary(() =>
   }),
 );
 
+const BBHome = lazyWithErrorBoundary(() =>
+  import('./pages/Home').then((module) => {
+    if (!module.default) throw new Error('Failed to load Home component');
+    return module;
+  }),
+);
+
 const Tours = lazyWithErrorBoundary(() =>
   import('./pages/Tours').then((module) => {
     if (!module.default) throw new Error('Failed to load Tours component');
@@ -197,59 +204,17 @@ function App() {
                 }
               />
 
-              {/* BB Holidays Routes */}
-              <Route path="/holidays" element={<BBHolidaysLayout />}>
-                <Route
-                  index
-                  element={
-                    <Suspense fallback={<LoadingSpinner />}>
-                      <ErrorBoundary>
-                        <Tours />
-                      </ErrorBoundary>
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="tours"
-                  element={
-                    <Suspense fallback={<LoadingSpinner />}>
-                      <ErrorBoundary>
-                        <Tours />
-                      </ErrorBoundary>
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="tours/:id"
-                  element={
-                    <Suspense fallback={<LoadingSpinner />}>
-                      <ErrorBoundary>
-                        <TourDetails />
-                      </ErrorBoundary>
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="about"
-                  element={
-                    <Suspense fallback={<LoadingSpinner />}>
-                      <ErrorBoundary>
-                        <About />
-                      </ErrorBoundary>
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="contact"
-                  element={
-                    <Suspense fallback={<LoadingSpinner />}>
-                      <ErrorBoundary>
-                        <Contact />
-                      </ErrorBoundary>
-                    </Suspense>
-                  }
-                />
-              </Route>
+              {/* BB Holidays Routes - Single page */}
+              <Route
+                path="/holidays/*"
+                element={
+                  <Suspense fallback={<LoadingSpinner />}>
+                    <ErrorBoundary>
+                      <BBHome />
+                    </ErrorBoundary>
+                  </Suspense>
+                }
+              />
 
               {/* Finance Routes */}
               <Route

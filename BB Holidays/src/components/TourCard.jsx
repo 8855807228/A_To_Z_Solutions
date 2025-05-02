@@ -10,7 +10,7 @@ export function TourCard({ tour }) {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}>
       <Link to={`/holidays/tours/${tour.id}`} className="block group">
-        <div className="relative aspect-w-16 aspect-h-9 overflow-hidden rounded-xl">
+        <div className="relative aspect-w-16 aspect-h-9 overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
           <img
             src={tour.imageUrl}
             alt={tour.title}
@@ -21,8 +21,8 @@ export function TourCard({ tour }) {
 
           {/* Price Tag */}
           <div className="absolute top-3 right-3 z-10">
-            <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm shadow-lg">
-              <span className="text-sm font-bold text-gray-900">
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-holiday-yellow text-gray-900 font-bold shadow-lg">
+              <span className="text-sm">
                 ₹{tour.price.toLocaleString('en-IN')}
               </span>
             </span>
@@ -30,17 +30,35 @@ export function TourCard({ tour }) {
 
           {/* Title and Details */}
           <div className="absolute bottom-3 left-3 right-3 z-10 flex flex-col gap-2">
-            <span className="px-2 py-1 bg-blue-500 text-white text-xs font-medium rounded-full w-fit">
+            <span className="px-2 py-1 bg-holiday text-white text-xs font-medium rounded-full w-fit">
               {tour.category}
             </span>
-            <h3 className="text-white font-semibold line-clamp-1">
+            <h3 className="text-white font-semibold line-clamp-1 text-lg">
               {tour.title}
             </h3>
             <div className="flex items-center">
-              <StarIcon className="h-4 w-4 text-yellow-400" />
-              <span className="ml-1 text-xs text-white/90">{tour.rating}</span>
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <StarIcon
+                    key={i}
+                    className={`h-4 w-4 ${i < Math.floor(tour.rating) ? 'text-holiday-yellow' : 'text-gray-400'}`}
+                  />
+                ))}
+              </div>
+              <span className="ml-2 text-xs text-white font-medium bg-black/40 px-2 py-0.5 rounded-full">
+                {tour.rating}
+              </span>
             </div>
           </div>
+
+          {/* Ribbon */}
+          {tour.featured && (
+            <div className="absolute -top-1 -left-1 z-10">
+              <div className="bg-holiday-teal text-white text-xs font-bold px-4 py-1 transform rotate-[-45deg] translate-y-3 shadow-md">
+                FEATURED
+              </div>
+            </div>
+          )}
         </div>
       </Link>
     </motion.div>

@@ -7,6 +7,13 @@ import {
   MagnifyingGlassIcon,
   FunnelIcon,
   XMarkIcon,
+  BuildingOfficeIcon,
+  UsersIcon,
+  UserGroupIcon,
+  TicketIcon,
+  TruckIcon,
+  HomeModernIcon,
+  IdentificationIcon,
 } from '@heroicons/react/24/outline';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -106,20 +113,201 @@ export default function Tours() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
-              Discover Amazing Tours
+              BB Holidays
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-lg sm:text-xl text-blue-100 max-w-2xl">
-              Explore our handpicked collection of incredible adventures across
-              India
+              className="text-lg sm:text-xl text-blue-100 max-w-3xl">
+              A trusted Destination Management Company based in Aurangabad,
+              Maharashtra, specializing in customized domestic and international
+              travel.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-4 text-lg sm:text-xl text-blue-100 max-w-3xl">
+              <span className="font-semibold text-amber-300">
+                One Line Tour Price – Always All Inclusive.
+              </span>{' '}
+              No Confusion. No Hidden Costs.
             </motion.p>
           </div>
         </div>
 
+        {/* Services Section */}
+        <div className="bg-white py-12 sm:py-16">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-10 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Our Services
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                We offer a wide range of services under one roof, ensuring a
+                seamless experience from planning to travel.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Corporate Travel */}
+              <div className="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <BuildingOfficeIcon className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Corporate Travel
+                </h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    End-to-end solutions for MICE: Meetings, Incentives,
+                    Conferences, Exhibitions
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    Corporate transport contracts for employee travel and
+                    business logistics
+                  </li>
+                </ul>
+              </div>
+
+              {/* B2B */}
+              <div className="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <UsersIcon className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Business to Business (B2B)
+                </h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    Tie-ups with national & international Destination Management
+                    Companies (DMCs)
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    Shared growth through collaborative and sustainable tourism
+                    models
+                  </li>
+                </ul>
+              </div>
+
+              {/* B2C */}
+              <div className="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <UserGroupIcon className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Business to Customer (B2C)
+                </h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    Customized family holidays, honeymoon packages, group tours
+                    & solo adventures
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    Memorable experiences tailored to individual travel goals
+                  </li>
+                </ul>
+              </div>
+
+              {/* Train, Travel & Flight Bookings */}
+              <div className="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <TicketIcon className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Train, Travel & Flight Bookings
+                </h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    Domestic and international bookings via a dedicated travel
+                    desk
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    Hassle-free reservation handling across all platforms
+                  </li>
+                </ul>
+              </div>
+
+              {/* PAN India Taxi & Bus Services */}
+              <div className="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <TruckIcon className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  PAN India Taxi & Bus Services
+                </h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    Advance and online booking for taxis, coaches & buses
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    Reliable, clean vehicles with trained drivers for local and
+                    long-distance trips
+                  </li>
+                </ul>
+              </div>
+
+              {/* Hotel Bookings */}
+              <div className="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <HomeModernIcon className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Hotel Bookings
+                </h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    Access to competitive rates for hotels ranging from budget
+                    to luxury
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    Bookable in advance for a stress-free experience
+                  </li>
+                </ul>
+              </div>
+
+              {/* Passport & Visa Consultation */}
+              <div className="bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow mx-auto md:col-span-2 lg:col-span-1">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <IdentificationIcon className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Passport & Visa Consultation
+                </h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    Step-by-step support for passport applications and visa
+                    processes
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-600 mr-2">•</span>
+                    Ideal for both leisure and business travelers
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center">
+            Discover Our Tours
+          </h2>
+
           {/* Search and Filters Card */}
           <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-6 sm:mb-8">
             {/* Search Bar */}
@@ -210,64 +398,68 @@ export default function Tours() {
                         setFilters({ ...filters, duration: e.target.value })
                       }
                       className="w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors">
-                      <option value="all">All Durations</option>
+                      <option value="all">Any Duration</option>
                       <option value="1-3">1-3 Days</option>
                       <option value="4-7">4-7 Days</option>
                       <option value="8-14">8-14 Days</option>
                       <option value="15+">15+ Days</option>
                     </select>
                   </div>
+
+                  {/* Clear Filters Button */}
+                  <div className="flex items-end lg:col-span-3">
+                    <button
+                      onClick={clearFilters}
+                      className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                      <XMarkIcon className="h-4 w-4 mr-1" />
+                      Clear Filters
+                    </button>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
+          </div>
 
-            {/* Clear Filters Button */}
-            <div className="mt-4 flex justify-end">
+          {/* Tour Results */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {isLoading ?
+              [...Array(6)].map((_, index) => <TourCardSkeleton key={index} />)
+            : tours?.map((tour) => <TourCard key={tour.id} tour={tour} />)}
+          </div>
+
+          {tours?.length === 0 && !isLoading && (
+            <div className="text-center py-12">
+              <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                No tours found matching your criteria
+              </h3>
+              <p className="text-gray-500">
+                Try adjusting your filters or search term
+              </p>
               <button
                 onClick={clearFilters}
-                className="text-sm text-gray-600 hover:text-blue-600 transition-colors flex items-center">
-                <XMarkIcon className="h-4 w-4 mr-1" />
-                Clear Filters
+                className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                Reset Filters
               </button>
             </div>
-          </div>
-
-          {/* Results Count */}
-          <div className="mb-6">
-            <p className="text-base sm:text-lg text-gray-600">
-              {isLoading ?
-                <span className="inline-block">
-                  <span className="w-24 h-6 shimmer rounded inline-block align-middle" />
-                </span>
-              : <>
-                  Showing{' '}
-                  <span className="font-semibold text-gray-900">
-                    {tours.length}
-                  </span>{' '}
-                  amazing tours
-                </>
-              }
-            </p>
-          </div>
-
-          {/* Tours Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {isLoading ?
-              Array.from({ length: 6 }).map((_, index) => (
-                <TourCardSkeleton key={index} />
-              ))
-            : tours.map((tour) => <TourCard key={tour.id} tour={tour} />)}
-          </div>
-
-          {/* No Results */}
-          {!isLoading && tours.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">
-                No tours found matching your criteria. Try adjusting your
-                filters.
-              </p>
-            </div>
           )}
+        </div>
+
+        {/* Contact CTA Section */}
+        <div className="bg-gray-100 py-12 sm:py-16">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+              Can't Find What You're Looking For?
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+              Let us create a custom tour package just for you. Contact our
+              travel experts for a personalized experience.
+            </p>
+            <a
+              href="/holidays/contact"
+              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 transition-colors">
+              Request a Custom Quote
+            </a>
+          </div>
         </div>
       </div>
     </PageTransition>
